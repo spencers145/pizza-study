@@ -4,7 +4,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-def plotRollingData(columns: list[str], data: pd.DataFrame, roll_range: int, direction: str = "center", scales: list[float] = 1):
+def plotRollingData(columns: list[str], data: pd.DataFrame, roll_range: int, direction: str = "center", scales: list[float] = 1, legend = True):
     if scales == 1: scales = [1]*len(columns)
 
     if direction == "center":
@@ -34,4 +34,4 @@ def plotRollingData(columns: list[str], data: pd.DataFrame, roll_range: int, dir
                 rolling_avgs.append(sum/count)
             plt.plot(column.index[roll_range:], rolling_avgs[roll_range:], label=column_name)
     else: raise Exception("Invalid range type.")
-    plt.legend()
+    if legend: plt.legend()
